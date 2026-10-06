@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup Dashboard Olist</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.t{font-family:'IBM Plex Sans',sans-serif;color:#17262B}
+.c{background:#fff;border:1px solid #D9E2E5;border-radius:10px;padding:20px}
+.tag{font-size:12px;color:#4A6168;margin-top:10px}
+.tag b{font-family:monospace;font-weight:500;color:#0F6B6B}
+select{font:inherit;font-size:14px;padding:10px 12px;min-height:44px;border:1px solid #B8C6CA;border-radius:8px;background:#fff;color:#17262B}
+label{font-size:12px;font-weight:600;color:#4A6168;display:block;margin-bottom:4px}
+th{text-align:left;font-size:12px;color:#4A6168;font-weight:600;padding:10px 8px;border-bottom:1px solid #D9E2E5}
+td{font-size:14px;padding:12px 8px;border-bottom:1px solid #EEF2F3}
+</style>
+
+</head>
+<body>
+
+<div class="t" style="background:#F2F5F6;min-height:940px;box-sizing:border-box;padding:28px 32px">
+<div style="max-width:1216px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between">
+<div>
+<h1 style="margin:0;font-size:26px;font-weight:700;color:#0F6B6B">Marketplace Olist · Ventas, logística y satisfacción</h1>
+<div style="font-size:14px;color:#4A6168;margin-top:4px">Fuente: PostgreSQL · esquema dw · compras 2017–2018</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<div><label for="f1">Año</label><select id="f1"><option>Todos</option><option>2017</option><option>2018</option></select></div>
+<div><label for="f2">Categoría</label><select id="f2"><option>Todas</option><option>health_beauty</option><option>watches_gifts</option><option>bed_bath_table</option><option>sports_leisure</option><option>computers_accessories</option><option>furniture_decor</option><option>housewares</option><option>unknown</option></select></div>
+<div><label for="f3">Estado del cliente</label><select id="f3"><option>Todos</option><option>SP</option><option>RJ</option><option>MG</option><option>RS</option><option>PR</option><option>SC</option><option>BA</option><option>DF</option><option>GO</option><option>ES</option><option>PE</option><option>CE</option></select></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+<div class="c"><div style="font-size:13px;font-weight:600;color:#4A6168">Ingresos por ventas (GMV)</div><div style="font-size:36px;font-weight:700;margin-top:6px">R$ 13,50 M</div><div class="tag">Objeto SQL: <b>fn_total_ventas()</b></div></div>
+<div class="c"><div style="font-size:13px;font-weight:600;color:#4A6168">% de entregas tardías</div><div style="font-size:36px;font-weight:700;margin-top:6px;color:#B2461A">8,11 %</div><div class="tag">Objeto SQL: <b>fn_pct_entregas_tardias()</b></div></div>
+<div class="c"><div style="font-size:13px;font-weight:600;color:#4A6168">Calificación promedio</div><div style="font-size:36px;font-weight:700;margin-top:6px">4,10 / 5</div><div class="tag">Objeto SQL: <b>fn_calificacion_promedio()</b></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px">
+<div class="c">
+<div style="font-size:16px;font-weight:600">Ingresos por mes</div>
+<div style="font-size:12px;color:#4A6168;margin-bottom:12px">Gráfico de líneas (esquema ilustrativo, sin datos)</div>
+<svg viewBox="0 0 520 190" style="width:100%;height:190px" role="img" aria-label="Esquema de gráfico de líneas de ingresos por mes">
+<line x1="30" y1="160" x2="510" y2="160" stroke="#B8C6CA"></line><line x1="30" y1="10" x2="30" y2="160" stroke="#B8C6CA"></line>
+<polyline points="30,140 110,125 190,110 270,80 350,90 430,50 510,40" fill="none" stroke="#0F6B6B" stroke-width="3"></polyline>
+<text x="30" y="180" font-size="11" fill="#4A6168">Ene 2017</text><text x="450" y="180" font-size="11" fill="#4A6168">Ago 2018</text>
+</svg>
+<div class="tag">Vista: <b>vw_ventas_mensual</b> · Filtro: categoría</div>
+</div>
+<div class="c">
+<div style="font-size:16px;font-weight:600">Calificación según puntualidad de la entrega</div>
+<div style="font-size:12px;color:#4A6168;margin-bottom:12px">Gráfico de barras</div>
+<div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">
+<div><div style="font-size:13px;margin-bottom:4px">A tiempo · 4,29</div><div style="height:28px;width:86%;background:#0F6B6B;border-radius:4px"></div></div>
+<div><div style="font-size:13px;margin-bottom:4px">Tardía · 2,57</div><div style="height:28px;width:51%;background:#B2461A;border-radius:4px"></div></div>
+</div>
+<div class="tag" style="margin-top:34px">Vista: <b>vw_calificacion_vs_retraso</b> · Filtros: año, estado</div>
+</div>
+</div>
+
+<div class="c">
+<div style="font-size:16px;font-weight:600;margin-bottom:8px">Detalle de pedidos</div>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;min-width:720px">
+<thead><tr><th>Pedido</th><th>Fecha compra</th><th>Estado cliente</th><th>Ingresos</th><th>Días entrega</th><th>Entrega</th><th>Calificación</th></tr></thead>
+<tbody>
+<tr><td>[order_id]</td><td>[fecha]</td><td>[UF]</td><td>[R$]</td><td>[días]</td><td>[A tiempo / Tardía]</td><td>[1–5]</td></tr>
+<tr><td>[order_id]</td><td>[fecha]</td><td>[UF]</td><td>[R$]</td><td>[días]</td><td>[A tiempo / Tardía]</td><td>[1–5]</td></tr>
+<tr><td>[order_id]</td><td>[fecha]</td><td>[UF]</td><td>[R$]</td><td>[días]</td><td>[A tiempo / Tardía]</td><td>[1–5]</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tag">Vista: <b>vw_detalle_pedidos</b> · Filtros: estado, año</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

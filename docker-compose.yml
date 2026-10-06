@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: bi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bi_user
+      POSTGRES_PASSWORD: bi_password
+      POSTGRES_DB: bi_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./:/work
+
+volumes:
+  postgres_data:
